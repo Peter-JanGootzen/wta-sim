@@ -65,13 +65,13 @@ object WTASim {
         val machineFractions = cli.machineFractions ?: List(resourcesPerMachine.size) { 1.0 / resourcesPerMachine.size }
 
         // Check if the given number of CPUs per machine is sufficient
-        val maxResourcesUsed = trace.tasks.map { it.cpuDemand }.max()!!
+        val maxResourcesUsed = trace.tasks.map { it.cpuDemand }.maxOrNull()!!
         // Get the highest clockspeed of all machines
-        val highestSpeed = baseClocks.max()!!
+        val highestSpeed = baseClocks.maxOrNull()!!
         // Compute the normalized speeds of all machines
         val speedFactors = baseClocks.map { s -> s / highestSpeed }
 
-        if (maxResourcesUsed > resourcesPerMachine.max()!!) {
+        if (maxResourcesUsed > resourcesPerMachine.maxOrNull()!!) {
             println("WARNING: Some tasks in the trace require more than the maximum number of logical cores per machine")
         }
 
@@ -105,8 +105,8 @@ object WTASim {
             }
         }
 
-        val traceStartTime = trace.tasks.map { it.submissionTime }.min()!!
-        val traceEndTime = taskEarliestEndTimes.max()!!
+        val traceStartTime = trace.tasks.map { it.submissionTime }.minOrNull()!!
+        val traceEndTime = taskEarliestEndTimes.maxOrNull()!!
         val totalResourceUsage = trace.tasks.fold(BigInteger.ZERO) { acc, task ->
             acc.add(BigInteger.valueOf(task.runTime).multiply(BigInteger.valueOf(task.cpuDemand.toLong())))
         }

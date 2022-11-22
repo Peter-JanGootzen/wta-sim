@@ -69,7 +69,7 @@ class Simulation(
 
             val submitTime = workflow.tasks
                 .filter { it.dependencies.isEmpty() }
-                .map { it.submissionTime }.min()
+                .map { it.submissionTime }.minOrNull()
                 ?: throw IllegalArgumentException("A workflow must consist of at least one task")
             eventQueue.submit(WorkflowSubmittedEvent(submitTime, workflow))
         }

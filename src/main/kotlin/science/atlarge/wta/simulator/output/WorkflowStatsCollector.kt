@@ -50,7 +50,7 @@ class WorkflowStatsCollector(
         // Compute the earliest possible completion time of this workflow
         workflowEarliestCompletionTimes[event.workflow.id] = event.workflow.tasks
                 .map { taskStatsCollector.earliestCompletionTimeOf(it) }
-                .max()!!
+                .maxOrNull()!!
     }
 
     fun writeToFile(outputFile: File) {

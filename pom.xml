@@ -12,7 +12,7 @@
         <commons.cli.version>1.4</commons.cli.version>
         <commons.math.version>3.6.1</commons.math.version>
 	    <hadoop.version>3.2.0</hadoop.version>
-        <kotlin.version>1.4.32</kotlin.version>
+        <kotlin.version>1.5.0</kotlin.version>
 	    <opencsv.version>4.5</opencsv.version>
 	    <parquet.version>1.12.0</parquet.version>
 	    <fastutil.version>8.5.4</fastutil.version>
@@ -68,7 +68,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>1.4.32</version>
+                <version>1.5.0</version>
                 <executions>
                     <execution>
                         <id>compile</id>
